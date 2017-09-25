@@ -1,10 +1,12 @@
-package currency;
+package httpContentHandler;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.HttpURLConnection;
 
-public class GetCurrency {
+import api.HttpConnect;
+
+public class GetCurrency extends HttpConnect{
 	public static String usdLink = "https://themoneyconverter.com/HKD/USD.aspx";
 	public static String twdLink = "https://themoneyconverter.com/HKD/TWD.aspx";
 	public static String rmbLink = "https://themoneyconverter.com/HKD/CNY.aspx";
@@ -16,20 +18,28 @@ public class GetCurrency {
 	public static String krwHKLink = "https://themoneyconverter.com/KRW/HKD.aspx";
 	public static String cnyHKLink = "https://themoneyconverter.com/CNY/HKD.aspx";
 	
-//	public static void main(String args[])
-//	{
-//		getCurrency(usdLink);
-//	}
+	/**
+	 * Returns request currency
+	 * input the URL string
+	 * 
+	 * 
+	 * @author patjing
+	 * @return	double currency 
+	 * @exception IOException
+	 * @since	25-09-2017
+	 * @version 0.0.0.3
+	 */
 	
 	public static double getCurrency(String link)
 	{
 		String line;
 		double currency = 0;
+		HttpConnect connect = new HttpConnect(link);
+		HttpURLConnection con = connect.HttpInit("GET");
+		
 		try
-		{
-			URL url = new URL(link);
-			URLConnection conn = url.openConnection();
-		    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		{			
+		    BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		    
 	        while ((line = br.readLine()) != null)
 	        {
@@ -40,11 +50,11 @@ public class GetCurrency {
 	            }
 	        }
 		}
-		catch(Exception ex)
+		catch(IOException ex)
 		{
 			
 		}
-		//System.out.println(currency);
+
 		return currency;
 	}
 

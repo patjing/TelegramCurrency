@@ -1,4 +1,4 @@
-package currency;
+package messageProcessor;
 
 public class Calculator {
 	

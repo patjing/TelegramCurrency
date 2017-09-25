@@ -1,16 +1,20 @@
-package currency;
+package messageProcessor;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
+
+import httpContentHandler.GetCurrency;
+import httpContentHandler.GetMessage;
+import httpContentHandler.SendMessage;
 
 public class ProcessMessage
 {
-	private static SendMessage sm;
-	private static GetMessage gm;
+	private SendMessage sm;
+	private GetMessage gm;
 	
 	private static int messageID = 0;
-	private static String notice = "U+1F647";
+	private static String notice = "We cannot handle this message";
 	
 	/**
 	 * It initialize the object
@@ -42,13 +46,19 @@ public class ProcessMessage
 	
 	/**
 	 * split the web content
+	 * And using SendMessage to send the message to url
 	 * 
 	 * 
 	 * @author patjing
-	 * @throws	Exception
-	 * @since	21-09-2017
+	 * @param	BuffereReader web content
+	 * @return	boolean
+	 * @throws	IOException
+	 * @throws ArrayIndexOutOfBoundsException no content
+	 * @throws NumberFormatException
+	 * @since	25-09-2017
+	 * @versions 0.0.0.2
 	 */	
-	private static boolean processMessage(BufferedReader in) throws Exception 
+	private boolean processMessage(BufferedReader in)
 	{
 		double hkdInput = 0;
 		
@@ -64,19 +74,36 @@ public class ProcessMessage
 		//SimpleDateFormat date = new SimpleDateFormat("dd MMM yyyy hh:mm:ss");
 		//SimpleDateFormat minute = new SimpleDateFormat("mmss");
 			
-		
-		String inputLine = in.readLine();
 		String receiveMessage;
 		String userID = null;
+		String inputLine = null;
+		try 
+		{
+			inputLine = in.readLine();
+		}
+		catch (IOException e) 
+		{
+
+			e.printStackTrace();
+		}
+
 		
 		do
 		{
-			//System.out.println(inputLine);
 			String temp = inputLine;
-			inputLine = in.readLine();
+			try
+			{
+				inputLine = in.readLine();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
 
+			//search for the last line
 			if(inputLine==null)
 			{	
+				//for web site no content
 				try
 				{
 					userID = temp.split("\"id")[1].split("\"")[1].split(",")[0].split(":")[1];
@@ -86,7 +113,6 @@ public class ProcessMessage
 					
 				}
 				
-				//messageFile.saveMessageIdLog(GeneraateLog.fileMesssageID,temp.split("id")[1].split("\"")[1].split(":")[1].split(",")[0]);
 				
 				if(temp.contains("text"))
 				{										
@@ -95,18 +121,18 @@ public class ProcessMessage
 
 					if(messageID == Integer.parseInt(temp.split("id")[1].split("\"")[1].split(":")[1].split(",")[0]))
 					{
-						//System.out.println("YES");
+
 					}
 					else
 					{
 						messageID = Integer.parseInt(temp.split("id")[1].split("\"")[1].split(":")[1].split(",")[0]);
 						//System.out.println(messageID);
 						
-						if(receiveMessage.contains("currency "))
+						if(receiveMessage.contains("hkt "))
 						{
 							try
 							{
-								hkdInput = Double.parseDouble(receiveMessage.split("currency ")[1]);
+								hkdInput = Double.parseDouble(receiveMessage.split("hkt ")[1]);
 							}
 							catch(Exception ex)
 							{
@@ -142,7 +168,7 @@ public class ProcessMessage
 							{
 								hkdInput = Double.parseDouble(receiveMessage.split("twd ")[1]);
 							}
-							catch(Exception ex)
+							catch(NumberFormatException ex)
 							{
 								
 							}
@@ -161,7 +187,7 @@ public class ProcessMessage
 							{
 								hkdInput = Double.parseDouble(receiveMessage.split("jpy ")[1]);
 							}
-							catch(Exception ex)
+							catch(NumberFormatException ex)
 							{
 								
 							}
@@ -180,7 +206,7 @@ public class ProcessMessage
 							{
 								hkdInput = Double.parseDouble(receiveMessage.split("cny ")[1]);
 							}
-							catch(Exception ex)
+							catch(NumberFormatException ex)
 							{
 								
 							}
@@ -199,7 +225,7 @@ public class ProcessMessage
 							{
 								hkdInput = Double.parseDouble(receiveMessage.split("usd ")[1]);
 							}
-							catch(Exception ex)
+							catch(NumberFormatException ex)
 							{
 								
 							}
@@ -220,7 +246,16 @@ public class ProcessMessage
 				}
 			}	
 		}while (inputLine != null);	
-		in.close();
+		
+		try 
+		{
+			in.close();
+		} 
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		if(postcode<400)
 		{
 			return true;
