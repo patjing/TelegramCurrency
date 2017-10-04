@@ -32,10 +32,10 @@ public class ProcessMessage
 	 * It execute the method
 	 * 
 	 * @author patjing
-	 * @throws	Exception
 	 * @since	21-09-2017
+	 * @version  0.0.1.1
 	 */	
-	public void execute() throws Exception
+	public void execute()
 	{
 		while(true)
 		{
