@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import api.file.FileExecutor;
 import httpContentHandler.GetCurrency;
 import httpContentHandler.GetMessage;
 import httpContentHandler.SendMessage;
@@ -12,8 +13,10 @@ public class ProcessMessage
 {
 	private SendMessage sm;
 	private GetMessage gm;
+	private FileExecutor fe;
 	
 	private static int messageID = 0;
+	private static int fileContentID = 0;
 	private static String notice = "We cannot handle this message";
 	
 	/**
@@ -26,14 +29,16 @@ public class ProcessMessage
 	{
 		sm = new SendMessage();
 		gm = new GetMessage();
+		fe = new FileExecutor("LastMessageID");
 	}
 	
 	/**
 	 * It execute the method
 	 * 
 	 * @author patjing
+	 * @throws	Exception
 	 * @since	21-09-2017
-	 * @version  0.0.1.1
+	 * @version 0.0.1.1
 	 */	
 	public void execute()
 	{
@@ -126,6 +131,13 @@ public class ProcessMessage
 					else
 					{
 						messageID = Integer.parseInt(temp.split("id")[1].split("\"")[1].split(":")[1].split(",")[0]);
+						//read last message ID 
+						fileContentID = Integer.parseInt(fe.readFile());
+						if(messageID == fileContentID )
+						{
+							continue;
+						}
+						fe.writeFile(Integer.toString(messageID));
 						//System.out.println(messageID);
 						
 						if(receiveMessage.contains("hkt "))

@@ -37,7 +37,7 @@ public class HttpConnect extends WebAgent implements HttpConnection
 	 * @exception IOException
 	 * @return	HttpURLConnection object
 	 * @since	25-09-2017
-	 * @version 0.0.0.1
+	 * @version 0.0.1.0
 	 */
 	
 	public HttpURLConnection HttpInit(String method)
@@ -75,7 +75,7 @@ public class HttpConnect extends WebAgent implements HttpConnection
 	 * @exception IOException
 	 * @return	int the HTTP connection code
 	 * @since	25-09-2017
-	 * @version 0.0.0.1
+	 * @version 0.0.1.0
 	 */
 	
 	public int HttpConnected(HttpURLConnection con)

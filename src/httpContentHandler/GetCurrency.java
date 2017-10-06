@@ -27,7 +27,7 @@ public class GetCurrency extends HttpConnect{
 	 * @return	double currency 
 	 * @exception IOException
 	 * @since	25-09-2017
-	 * @version 0.0.0.3
+	 * @version 0.0.1.0
 	 */
 	
 	public static double getCurrency(String link)

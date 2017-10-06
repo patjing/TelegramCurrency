@@ -34,7 +34,7 @@ public class GetMessage extends HttpConnect{
 	 * @return	BufferedReader type, all content of website
 	 * @exception IOException
 	 * @since	25-09-2017
-	 * @version 0.0.0.2
+	 * @version 0.0.1.0
 	 */
 
 	public BufferedReader getContent()
