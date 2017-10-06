@@ -21,7 +21,7 @@ public class SendMessage extends HttpConnect{
 	 * @throws UnsupportedEncodingException
 	 * @throws IOException
 	 * @since	25-09-2017
-	 * @versions 0.0.0.2
+	 * @versions 0.0.1.0
 	 */
 	public int sendPost(String userID,String message)
 	{
