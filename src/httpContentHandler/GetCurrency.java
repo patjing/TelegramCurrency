@@ -5,18 +5,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 import api.HttpConnect;
+import api.XMLparser.ReadXML;
 
 public class GetCurrency extends HttpConnect{
-	public static String usdLink = "https://themoneyconverter.com/HKD/USD.aspx";
-	public static String twdLink = "https://themoneyconverter.com/HKD/TWD.aspx";
-	public static String rmbLink = "https://themoneyconverter.com/HKD/CNY.aspx";
-	public static String krwLink = "https://themoneyconverter.com/HKD/KRW.aspx";
-	public static String jpyLink = "https://themoneyconverter.com/HKD/JPY.aspx";
-	public static String twdHKLink = "https://themoneyconverter.com/TWD/HKD.aspx";
-	public static String jpyHKLink = "https://themoneyconverter.com/JPY/HKD.aspx";
-	public static String usdHKLink = "https://themoneyconverter.com/USD/HKD.aspx";
-	public static String krwHKLink = "https://themoneyconverter.com/KRW/HKD.aspx";
-	public static String cnyHKLink = "https://themoneyconverter.com/CNY/HKD.aspx";
+	public static String usdLink = ReadXML.readFile("URL", "usdLink");
+	public static String twdLink = ReadXML.readFile("URL", "twdLink");
+	public static String rmbLink = ReadXML.readFile("URL", "rmbLink");
+	public static String krwLink = ReadXML.readFile("URL", "krwLink");
+	public static String jpyLink = ReadXML.readFile("URL", "jpyLink");
+	public static String twdHKLink = ReadXML.readFile("URL", "twdHKLink");
+	public static String jpyHKLink = ReadXML.readFile("URL", "jpyHKLink");
+	public static String usdHKLink = ReadXML.readFile("URL", "usdHKLink");
+	public static String krwHKLink = ReadXML.readFile("URL", "krwHKLink");
+	public static String cnyHKLink = ReadXML.readFile("URL", "cnyHKLink");
 	
 	/**
 	 * Returns request currency

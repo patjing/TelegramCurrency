@@ -6,11 +6,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 import api.HttpConnect;
+import api.XMLparser.ReadXML;
 
 
 public class GetMessage extends HttpConnect{
 
-	private static String url = "https://api.telegram.org/bot302785201:AAEyZ-tGoCByLVNTJWVVhIkXpYBbg5BVMh8/getUpdates";
+	private static String url = ReadXML.readFile("URL", "update");
 	
 	//set the global String url
 	protected static void setURL(String link)

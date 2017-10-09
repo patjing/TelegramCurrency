@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import api.XMLparser.ReadXML;
 import api.file.FileExecutor;
 import httpContentHandler.GetCurrency;
 import httpContentHandler.GetMessage;
@@ -17,7 +18,7 @@ public class ProcessMessage
 	
 	private static int messageID = 0;
 	private static int fileContentID = 0;
-	private static String notice = "We cannot handle this message";
+	private static String notice = ReadXML.readFile("MessageProcessor", "remindMessage");
 	
 	/**
 	 * It initialize the object
@@ -132,12 +133,14 @@ public class ProcessMessage
 					{
 						messageID = Integer.parseInt(temp.split("id")[1].split("\"")[1].split(":")[1].split(",")[0]);
 						//read last message ID 
-						fileContentID = Integer.parseInt(fe.readFile());
+						fileContentID = Integer.parseInt(ReadXML.readFile("MessageProcessor", "LastMessageID"));
+						//fileContentID = Integer.parseInt(fe.readFile());
 						if(messageID == fileContentID )
 						{
 							continue;
 						}
-						fe.writeFile(Integer.toString(messageID));
+						ReadXML.modifyFile("MessageProcessor", "LastMessageID", messageID);
+						//fe.writeFile(Integer.toString(messageID));
 						//System.out.println(messageID);
 						
 						if(receiveMessage.contains("hkt "))

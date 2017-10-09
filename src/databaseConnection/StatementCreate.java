@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
+import api.XMLparser.ReadXML;
 import api.databaseConnection.MysqlConnector;
 import api.databaseConnection.StatementGenerator;
 
@@ -21,8 +21,12 @@ public class StatementCreate extends StatementGenerator{
 	
 	public StatementCreate()
 	{
-		super("record_table");
-		mc = new MysqlConnector("54.238.249.141",3306,"Testing","root","123456");
+		super(ReadXML.readFile("DatabaseConnection", "table"));
+		mc = new MysqlConnector(ReadXML.readFile("DatabaseConnection", "ip"),
+				Integer.parseInt(ReadXML.readFile("DatabaseConnection", "port")),
+				ReadXML.readFile("DatabaseConnection", "database"),
+				ReadXML.readFile("DatabaseConnection", "user"),
+				ReadXML.readFile("DatabaseConnection", "password"));
 	}
 	
 	public StatementCreate(String tablename,String ip,int port,String instance, String user,String password)

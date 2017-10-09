@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><information>
+	<DatabaseConnection>
+		<ip>54.238.249.141</ip>
+		<port>3306</port>
+		<database>Testing</database>
+		<table>record_table</table>
+		<user>root</user>
+		<password>123456</password>
+	</DatabaseConnection>
+	<URL>
+		<update>https://api.telegram.org/bot302785201:AAEyZ-tGoCByLVNTJWVVhIkXpYBbg5BVMh8/getUpdates</update>
+		<send>https://api.telegram.org/bot302785201:AAEyZ-tGoCByLVNTJWVVhIkXpYBbg5BVMh8/sendMessage?chat_id=</send>
+		<usdLink>https://themoneyconverter.com/HKD/USD.aspx</usdLink>
+		<twdLink>https://themoneyconverter.com/HKD/TWD.aspx</twdLink>
+		<rmbLink>https://themoneyconverter.com/HKD/CNY.aspx</rmbLink>
+		<krwLink>https://themoneyconverter.com/HKD/KRW.aspx</krwLink>
+		<jpyLink>https://themoneyconverter.com/HKD/JPY.aspx</jpyLink>
+		<twdHKLink>https://themoneyconverter.com/TWD/HKD.aspx</twdHKLink>
+		<jpyHKLink>https://themoneyconverter.com/JPY/HKD.aspx</jpyHKLink>
+		<usdHKLink>https://themoneyconverter.com/USD/HKD.aspx</usdHKLink>
+		<krwHKLink>https://themoneyconverter.com/KRW/HKD.aspx</krwHKLink>
+		<cnyHKLink>https://themoneyconverter.com/CNY/HKD.aspx</cnyHKLink>
+	</URL>
+	<MessageProcessor>
+		<remindMessage>We cannot handle this message</remindMessage>
+		<LastMessageID>747</LastMessageID>
+	</MessageProcessor>
+</information>
