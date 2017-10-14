@@ -20,7 +20,7 @@ public class DatabaseThread implements Runnable
 						GetCurrency.getCurrency(GetCurrency.twdLink),GetCurrency.getCurrency(GetCurrency.jpyLink),
 						GetCurrency.getCurrency(GetCurrency.krwLink),new UTCTime().getDate(UTCTime.UTCTIME),
 						new UTCTime().getTime(UTCTime.UTCTIME));
-				Thread.sleep(1000*10);
+				Thread.sleep(1000*60*10);
 			}
 
 		}

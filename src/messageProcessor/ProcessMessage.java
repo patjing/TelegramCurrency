@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import api.XMLparser.ReadXML;
-import api.file.FileExecutor;
 import httpContentHandler.GetCurrency;
 import httpContentHandler.GetMessage;
 import httpContentHandler.SendMessage;
@@ -14,7 +13,6 @@ public class ProcessMessage
 {
 	private SendMessage sm;
 	private GetMessage gm;
-	private FileExecutor fe;
 	
 	private static int messageID = 0;
 	private static int fileContentID = 0;
@@ -30,7 +28,6 @@ public class ProcessMessage
 	{
 		sm = new SendMessage();
 		gm = new GetMessage();
-		fe = new FileExecutor("LastMessageID");
 	}
 	
 	/**
