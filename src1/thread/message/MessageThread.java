@@ -8,15 +8,7 @@ public class MessageThread implements Runnable
 	public void run() 
 	{
 		ProcessMessage pm = new ProcessMessage();
-		pm.init();
-		try 
-		{
-			pm.execute();
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		pm.execute();
 	}
 
 }

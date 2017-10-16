@@ -10,8 +10,6 @@ import httpContentHandler.SendMessage;
 
 public class ProcessMessage
 {
-	private GetMessage gm;
-
 	private static int messageID = 0;
 	private static int fileContentID = 0;
 	private static String notice = ReadXML.readFile("MessageProcessor", "remindMessage");
@@ -31,15 +29,14 @@ public class ProcessMessage
 	 * It execute the method
 	 * 
 	 * @author patjing
-	 * @throws	Exception
 	 * @since	21-09-2017
+	 * @version 0.0.2.0
 	 */	
-	public void execute() throws Exception
+	public void execute()
 	{
 		while(true)
 		{
-			gm = new GetMessage();
-			processMessage(gm.getLastMessage());
+			processMessage(new GetMessage().getLastMessage());
 		}
 	}
 		
@@ -56,7 +53,7 @@ public class ProcessMessage
 	 * @throws ArrayIndexOutOfBoundsException no content
 	 * @throws NumberFormatException
 	 * @since	25-09-2017
-	 * @versions 0.0.0.2
+	 * @versions 0.0.1.0
 	 */	
 	private boolean processMessage(String lastLine)
 	{
